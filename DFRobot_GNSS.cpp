@@ -43,7 +43,7 @@ sLonLat_t DFRobot_GNSS::getLat(void)
   data.latDD  = _sendData[0];
   data.latMM = _sendData[1];
   data.latMMMMM = ((uint32_t)_sendData[2] << 16) | ((uint32_t)_sendData[3] << 8) | ((uint32_t)_sendData[4]);
-  data.latitude = (double)data.latDD + ((double)data.latMM) / 100.0 + ((double)data.latMMMMM / 10000000.0);
+  data.latitude = (double)data.latDD*100.0 + ((double)data.latMM) + ((double)data.latMMMMM / 100000.0);
   data.latDirection = _sendData[5];
   return data;
 }
@@ -56,7 +56,7 @@ sLonLat_t DFRobot_GNSS::getLon(void)
   data.lonDDD  = _sendData[0];
   data.lonMM = _sendData[1];
   data.lonMMMMM = ((uint32_t)_sendData[2]<<16) | ((uint32_t)_sendData[3]<< 8) | ((uint32_t)_sendData[4]) ;
-  data.lonitude = (double)data.lonDDD + ((double)data.lonMM) / 100.0 + ((double)data.lonMMMMM / 10000000.0);
+  data.lonitude = (double)data.lonDDD*100.0 + ((double)data.lonMM) + ((double)data.lonMMMMM / 100000.0);
   data.lonDirection = _sendData[5];
   return data;
 }
