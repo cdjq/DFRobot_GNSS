@@ -152,6 +152,21 @@ void enablePower(void);
  */
 void disablePower(void);
 
+
+/**
+ * @fn setRgbOn
+ * @brief 开启 rgb 灯
+ * @return null
+ */
+void setRgbOn(void);
+
+/**
+ * @fn setRgbOn
+ * @brief 关闭 rgb 灯
+ * @return null
+ */
+void setRgbOff(void);
+
 /**
  * @fn setCallback
  * @brief 设置回调函数类型

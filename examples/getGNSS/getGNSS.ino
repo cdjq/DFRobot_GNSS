@@ -46,6 +46,9 @@ void setup()
  */
   gnss.setGnss(eGPS_BeiDou_GLONASS);
 
+
+  // gnss.setRgbOff();
+  gnss.setRgbOn();
   // gnss.disablePower();      // 失能gnss电源，失能后数据不会刷新
 }
 
@@ -75,10 +78,10 @@ void loop()
   Serial.println();
   Serial.print((char)lat.latDirection);
   Serial.print(" lat = ");
-  Serial.println(lat.latitude, 7);
+  Serial.println(lat.latitude, 5);
   Serial.print((char)lon.lonDirection);
   Serial.print(" lon = ");
-  Serial.println(lon.lonitude, 7);
+  Serial.println(lon.lonitude, 5);
   Serial.print("star userd = ");
   Serial.println(starUserd);
   Serial.print("alt high = ");

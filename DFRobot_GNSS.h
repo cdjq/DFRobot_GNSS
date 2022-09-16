@@ -105,13 +105,18 @@ public:
 
   #define I2C_GNSS_MODE 34
   #define I2C_SLEEP_MODE 35
+  #define I2C_RGB_MODE 36
 
   #define I2C_FLAG  1
   #define UART_FLAG 2
   #define TIME_OUT  500            ///< time out
 
-  #define ENBALE_POWER 0
-  #define DISABALE_POWER 1
+  #define ENABLE_POWER 0
+  #define DISABLE_POWER 1
+  
+  #define RGB_ON 0x05
+  #define RGB_OFF 0x02
+
 
   DFRobot_GNSS();
   ~DFRobot_GNSS();
@@ -238,6 +243,21 @@ void enablePower(void);
  * @return null
  */
 void disablePower(void);
+
+/**
+ * @fn setRgbOn
+ * @brief 开启 rgb 灯
+ * @return null
+ */
+void setRgbOn(void);
+
+/**
+ * @fn setRgbOn
+ * @brief 关闭 rgb 灯
+ * @return null
+ */
+void setRgbOff(void);
+
 
 /**
  * @fn setCallback

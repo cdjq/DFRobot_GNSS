@@ -26,6 +26,9 @@ getGnssMode	KEYWORD2
 setCallback	KEYWORD2
 enablePower	KEYWORD2
 disablePower	KEYWORD2
+setRgbOn	KEYWORD2
+setRgbOff	KEYWORD2
+
 
 #######################################
 # Constants (LITERAL1)

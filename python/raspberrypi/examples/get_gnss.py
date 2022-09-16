@@ -48,6 +48,8 @@ def setup():
     GPS_BeiDou_GLONASS 使用 gps + beidou + glonass
   '''
   gnss.set_gnss(GPS_BeiDou_GLONASS)
+  gnss.rgb_on()
+  #gnss.rgb_off()
   #gnss.disable_power()        # 失能gnss 电源,此时gnss数据不更新
 
 def loop():

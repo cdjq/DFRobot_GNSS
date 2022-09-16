@@ -109,10 +109,28 @@ double DFRobot_GNSS::getCog(void)
   return cog;
 }
 
+
+void DFRobot_GNSS::setRgbOn(void)
+{
+  uint8_t _sendData[10] = {0};
+  _sendData[0] = RGB_ON;
+  writeReg(I2C_RGB_MODE, _sendData, 1);
+  delay(50);
+}
+
+void DFRobot_GNSS::setRgbOff(void)
+{
+  uint8_t _sendData[10] = {0};
+  _sendData[0] = RGB_OFF;
+  writeReg(I2C_RGB_MODE, _sendData, 1);
+  delay(50);
+}
+
+
 void DFRobot_GNSS::enablePower(void)
 {
   uint8_t _sendData[10] = {0};
-  _sendData[0] = ENBALE_POWER;
+  _sendData[0] = ENABLE_POWER;
   writeReg(I2C_SLEEP_MODE, _sendData, 1);
   delay(50);
 }
@@ -120,7 +138,7 @@ void DFRobot_GNSS::enablePower(void)
 void DFRobot_GNSS::disablePower(void)
 {
   uint8_t _sendData[10] = {0};
-  _sendData[0] = DISABALE_POWER;
+  _sendData[0] = DISABLE_POWER;
   writeReg(I2C_SLEEP_MODE, _sendData, 1);
   delay(50);
 }

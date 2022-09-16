@@ -119,6 +119,16 @@ Download the library file before use, paste it into the custom directory for Ras
     @brief 失能gnss 电源,此时gnss不更新数据
   '''
   def disable_power(self):
+  
+  '''!
+    @brief 开启rgb
+  '''
+  def rgb_on(self):
+  
+  '''!
+    @brief 关闭rgb
+  '''
+  def rgb_off(self):
 ```
 
 ## Compatibility

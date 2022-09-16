@@ -54,8 +54,13 @@ I2C_DATA_LEN_L = 32
 I2C_ALL_DATA = 33
 I2C_GNSS_MODE = 34
 I2C_SLEEP_MODE = 35
+I2C_RGB_MODE = 36
+
 ENABLE_POWER = 0
 DISABLE_POWER = 1
+
+RGB_ON = 0x05
+RGB_OFF = 0x02
 GPS = 1
 BeiDou = 2
 GPS_BeiDou = 3
@@ -156,7 +161,7 @@ class DFRobot_GNSS(object):
       lat_lon.lat_mm = rslt[1]
       lat_lon.lat_mmmmm = rslt[2]*65536 + rslt[3]*256 + rslt[4]
       lat_lon.lat_direction = chr(rslt[5])
-      lat_lon.latitude = lat_lon.lat_dd + lat_lon.lat_mm/100.0 + lat_lon.lat_mmmmm/10000000.0
+      lat_lon.latitude = lat_lon.lat_dd*100.0 + lat_lon.lat_mm + lat_lon.lat_mmmmm/100000.0
     return lat_lon
 
   def get_lon(self):
@@ -170,7 +175,7 @@ class DFRobot_GNSS(object):
       lat_lon.lon_mm = rslt[1]
       lat_lon.lon_mmmmm = rslt[2]*65536 + rslt[3]*256 + rslt[4]
       lat_lon.lon_direction = chr(rslt[5])
-      lat_lon.lonitude = lat_lon.lon_ddd + lat_lon.lon_mm/100.0 + lat_lon.lon_mmmmm/10000000.0
+      lat_lon.lonitude = lat_lon.lon_ddd*100.0 + lat_lon.lon_mm + lat_lon.lon_mmmmm/100000.0
     return lat_lon
 
   def get_num_sta_used(self):
@@ -267,6 +272,23 @@ class DFRobot_GNSS(object):
     self.write_reg(I2C_SLEEP_MODE, self.__txbuf)
     time.sleep(0.1)
     
+
+  def rgb_on(self):
+    '''!
+      @brief 开启rgb
+    '''
+    self.__txbuf[0] = RGB_ON
+    self.write_reg(I2C_RGB_MODE, self.__txbuf)
+    time.sleep(0.1)
+  
+def rgb_off(self):
+    '''!
+      @brief 关闭rgb
+    '''
+    self.__txbuf[0] = RGB_OFF
+    self.write_reg(I2C_RGB_MODE, self.__txbuf)
+    time.sleep(0.1)
+
   def get_gnss_len(self):
     '''!
       @brief 获取gnss的数据长度
