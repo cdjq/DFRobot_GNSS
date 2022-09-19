@@ -46,7 +46,9 @@ typedef struct {
   uint32_t latMMMMM;
   char latDirection;
   double latitude;
+  double latitudeDegree;
   double lonitude;
+  double lonitudeDegree;
 }sLonLat_t;
 
 

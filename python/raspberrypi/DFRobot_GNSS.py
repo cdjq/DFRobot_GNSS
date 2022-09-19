@@ -86,12 +86,14 @@ class struct_lat_lon:
     self.lat_mm = 0
     self.lat_mmmmm = 0
     self.lat_direction = "S"
+    self.latitude_degree = 0.00
     self.latitude = 0.00
     self.lon_ddd = 0
     self.lon_mm = 0
     self.lon_mmmmm = 0
     self.lon_direction = "W"
     self.lonitude = 0.00
+    self.lonitude_degree = 0.00
 
 utc = struct_utc_tim()
 lat_lon = struct_lat_lon()
@@ -162,6 +164,7 @@ class DFRobot_GNSS(object):
       lat_lon.lat_mmmmm = rslt[2]*65536 + rslt[3]*256 + rslt[4]
       lat_lon.lat_direction = chr(rslt[5])
       lat_lon.latitude = lat_lon.lat_dd*100.0 + lat_lon.lat_mm + lat_lon.lat_mmmmm/100000.0
+      lat_lon.latitude_degree = lat_lon.lat_dd + lat_lon.lat_mm/60.0 + lat_lon.lat_mmmmm/100000.0/60.0
     return lat_lon
 
   def get_lon(self):
@@ -176,6 +179,7 @@ class DFRobot_GNSS(object):
       lat_lon.lon_mmmmm = rslt[2]*65536 + rslt[3]*256 + rslt[4]
       lat_lon.lon_direction = chr(rslt[5])
       lat_lon.lonitude = lat_lon.lon_ddd*100.0 + lat_lon.lon_mm + lat_lon.lon_mmmmm/100000.0
+      lat_lon.lonitude_degree = lat_lon.lon_ddd + lat_lon.lon_mm/60.0 + lat_lon.lon_mmmmm/100000.0/60.0
     return lat_lon
 
   def get_num_sta_used(self):

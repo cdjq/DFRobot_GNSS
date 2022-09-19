@@ -76,12 +76,18 @@ void loop()
   Serial.print(":");
   Serial.print(utc.second);
   Serial.println();
-  Serial.print((char)lat.latDirection);
-  Serial.print(" lat = ");
-  Serial.println(lat.latitude, 5);
-  Serial.print((char)lon.lonDirection);
-  Serial.print(" lon = ");
-  Serial.println(lon.lonitude, 5);
+  Serial.println((char)lat.latDirection);
+  Serial.println((char)lon.lonDirection);
+  
+  // Serial.print("lat DDMM.MMMMM = ");
+  // Serial.println(lat.latitude, 5);
+  // Serial.print(" lon DDDMM.MMMMM = ");
+  // Serial.println(lon.lonitude, 5);
+  Serial.print("lat degree = ");
+  Serial.println(lat.latitudeDegree,6);
+  Serial.print("lon degree = ");
+  Serial.println(lon.lonitudeDegree,6);
+
   Serial.print("star userd = ");
   Serial.println(starUserd);
   Serial.print("alt high = ");
