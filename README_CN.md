@@ -6,7 +6,7 @@
 ![正反面svg效果图](resources/images/TEL0157.jpg)
 
 
-## 产品链接(https://www.dfrobot.com.cn/goods-2995.html)
+## 产品链接(https://www.dfrobot.com)
 
     SKU：TEL0157
 
@@ -177,19 +177,21 @@ void setRgbOff(void);
 
 ## 兼容性
 
-| 主板        | 通过 | 未通过 | 未测试 | 备注 |
-| ----------- | :--: | :----: | :----: | ---- |
-| Arduino uno |  √   |        |        |      |
-| Mega2560    |  √   |        |        |      |
-| Leonardo    |  √   |        |        |      |
-| ESP32       |  √   |        |        |      |
-| micro:bit   |      |        |   √    |      |
+MCU                | Work Well    |   Work Wrong    | Untested    | Remarks
+------------------ | :----------: | :-------------: | :---------: | :----:
+Arduino Uno        |      √       |                 |             |
+Arduino MEGA2560   |      √       |                 |             |
+Arduino Leonardo   |      √       |                 |             |
+FireBeetle-ESP8266 |      √       |                 |             |
+FireBeetle-ESP32   |      √       |                 |             |
+FireBeetle-M0      |      √       |                 |             |
+Micro:bit          |      √       | nonsupport uart |             |
 
 
 ## 历史
-
-- 2022/8/15 - V1.0.0 版本
+- 2022/8/15 - V0.0.1 版本
+- 2022/10/26 - V1.0.0 版本
 
 ## 创作者
 
-Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2020. (Welcome to our [website](https://www.dfrobot.com/))
+Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2022. (Welcome to our website)

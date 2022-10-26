@@ -179,18 +179,22 @@ void setRgbOff(void);
 
 ## Compatibility
 
-MCU                | Work Well    | Work Wrong   | Untested    | Remarks
------------------- | :----------: | :----------: | :---------: | :----:
-Arduino Uno        |      √       |              |             |
-Arduino MEGA2560   |      √       |              |             |
-Arduino Leonardo   |      √       |              |             |
-FireBeetle-ESP32   |      √       |              |             |
-Micro:bit          |              |              |      √      |
+MCU                | Work Well    |   Work Wrong    | Untested    | Remarks
+------------------ | :----------: | :-------------: | :---------: | :----:
+Arduino Uno        |      √       |                 |             |
+Arduino MEGA2560   |      √       |                 |             |
+Arduino Leonardo   |      √       |                 |             |
+FireBeetle-ESP8266 |      √       |                 |             |
+FireBeetle-ESP32   |      √       |                 |             |
+FireBeetle-M0      |      √       |                 |             |
+Micro:bit          |      √       | nonsupport uart |             |
 
 
 ## History
 
-- 2022/8/15 - V1.0.0 Version
+- 2022/04/02 - Version 0.0.1 released.
+- 2022/10/26 - Version 1.0.0 released.
+
 ## Credits
 
-Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2020. (Welcome to our [website](https://www.dfrobot.com/))
+Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2022. (Welcome to our website)

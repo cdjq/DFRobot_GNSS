@@ -4,8 +4,8 @@
  * @copyright	Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
  * @license The MIT License (MIT)
  * @author [ZhixinLiu](zhixin.liu@dfrobot.com)
- * @version V0.1
- * @date 2022-08-15
+ * @version V1.0
+ * @date 2022-10-26
  * @url https://github.com/DFRobot/DFRobot_GNSS
  */
 #ifndef __DFRobot_GNSS_H__
@@ -13,10 +13,11 @@
 
 #include <Arduino.h>
 #include <Wire.h>
-#ifdef ESP_PLATFORM
-  #include <HardwareSerial.h>
+
+#if defined(ARDUINO_AVR_UNO) || defined(ESP8266)
+#include "SoftwareSerial.h"
 #else
-  #include <SoftwareSerial.h>
+#include "HardwareSerial.h"
 #endif
 
 /**
@@ -298,10 +299,10 @@ private:
 
 class DFRobot_GNSS_UART:public DFRobot_GNSS{
 public:
-#ifdef ESP_PLATFORM
-  DFRobot_GNSS_UART(HardwareSerial *hSerial, uint16_t Baud);
-#else
+#if defined(ARDUINO_AVR_UNO) || defined(ESP8266)
   DFRobot_GNSS_UART(SoftwareSerial *sSerial, uint16_t Baud);
+#else
+  DFRobot_GNSS_UART(HardwareSerial *hSerial, uint16_t Baud ,uint8_t rxpin = 0, uint8_t txpin = 0);
 #endif
 
   bool begin(void);
@@ -309,11 +310,14 @@ protected:
   virtual void writeReg(uint8_t reg, uint8_t *data, uint8_t len);
   virtual int16_t readReg(uint8_t reg, uint8_t *data, uint8_t len);
 private:
-#ifdef ESP_PLATFORM
-  HardwareSerial *_serial;
-#else
+
+#if defined(ARDUINO_AVR_UNO) || defined(ESP8266)
   SoftwareSerial *_serial;
+#else
+  HardwareSerial *_serial;
 #endif
   uint32_t _baud;
+  uint8_t _rxpin;
+  uint8_t _txpin;
 };
 #endif

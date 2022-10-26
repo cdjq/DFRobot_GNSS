@@ -28,6 +28,10 @@ enablePower	KEYWORD2
 disablePower	KEYWORD2
 setRgbOn	KEYWORD2
 setRgbOff	KEYWORD2
+eGnssMode_t	KEYWORD2
+sLonLat_t	KEYWORD2
+sTim_t	KEYWORD2
+
 
 
 #######################################

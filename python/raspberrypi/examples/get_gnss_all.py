@@ -5,8 +5,8 @@
   @copyright  Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
   @license    The MIT License (MIT)
   @author     [ZhixinLiu](zhixin.liu@dfrobot.com)
-  @version    V0.1
-  @date       2022-8-15
+  @version    V1.0
+  @date       2022-10-26
   @url https://github.com/DFRobot/DFRobot_GNSS
 '''
 from __future__ import print_function

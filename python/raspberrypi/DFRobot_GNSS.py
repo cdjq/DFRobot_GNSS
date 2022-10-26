@@ -6,7 +6,7 @@
   @license The MIT License (MIT)
   @author [ZhixinLiu](zhixin.liu@dfrobot.com)
   @version V1.0
-  @date 2020-09-09
+  @date 2020-10-26
   @url https://github.com/DFRobot/DFRobot_GNSS
 '''
 import serial
@@ -285,7 +285,7 @@ class DFRobot_GNSS(object):
     self.write_reg(I2C_RGB_MODE, self.__txbuf)
     time.sleep(0.1)
   
-def rgb_off(self):
+  def rgb_off(self):
     '''!
       @brief 关闭rgb
     '''

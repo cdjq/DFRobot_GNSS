@@ -4,8 +4,8 @@
   * @copyright Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
   * @license The MIT License (MIT)
   * @author ZhixinLiu(zhixin.liu@dfrobot.com)
-  * @version V0.1
-  * @date 2022-08-15
+  * @version V1.0
+  * @date 2022-10-26
   * @url https://github.com/dfrobot/DFRobot_GNSS
   */
 
@@ -16,24 +16,33 @@ void callback(char *data ,uint8_t len)
   for(uint8_t i = 0; i < len; i++){
     Serial.print((char)data[i]);
   }
+  delay(1);
 }
 
-DFRobot_GNSS_I2C gnss(&Wire ,GNSS_DEVICE_ADDR);
-/*
-#ifdef ESP_PLATFORM
-  // ESP32 user hardware uart
-  // RX io16
-  // TX io17
-  DFRobot_GNSS_UART gnss(&Serial2 ,9600);
+#define I2C_COMMUNICATION  //use I2C for communication, but use the serial port for communication if the line of codes were masked
+
+#ifdef  I2C_COMMUNICATION
+  DFRobot_GNSS_I2C gnss(&Wire ,GNSS_DEVICE_ADDR);
 #else
-  // Arduino user software uart
-  // RX io10
-  // TX io11
-  SoftwareSerial mySerial(10 ,11);
-  DFRobot_GNSS_UART gnss(&mySerial ,9600);
+/* ---------------------------------------------------------------------------------------------------------------------
+ *    board   |             MCU                | Leonardo/Mega2560/M0 |    UNO    | ESP8266 | ESP32 |  microbit  |   m0  |
+ *     VCC    |            3.3V/5V             |        VCC           |    VCC    |   VCC   |  VCC  |     X      |  vcc  |
+ *     GND    |              GND               |        GND           |    GND    |   GND   |  GND  |     X      |  gnd  |
+ *     RX     |              TX                |     Serial1 TX1      |     5     |   5/D6  |  D2   |     X      |  tx1  |
+ *     TX     |              RX                |     Serial1 RX1      |     4     |   4/D7  |  D3   |     X      |  rx1  |
+ * ----------------------------------------------------------------------------------------------------------------------*/
+/* 波特率不可以更改 */
+  #if defined(ARDUINO_AVR_UNO) || defined(ESP8266)
+    SoftwareSerial mySerial(4, 5);
+    DFRobot_GNSS_UART gnss(&mySerial ,9600);
+  #elif defined(ARDUINO_SAM_ZERO)
+    DFRobot_GNSS_UART gnss(&Serial1 ,9600);
+  #else
+    DFRobot_GNSS_UART gnss(&Serial1 ,9600 ,/*rx*/D2 ,/*tx*/D3);
+  #endif
 #endif
-*/
-void setup() 
+
+void setup()
 {
   Serial.begin(115200);
   while(!gnss.begin()){

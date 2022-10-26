@@ -4,8 +4,8 @@
  * @copyright	Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
  * @license The MIT License (MIT)
  * @author [ZhixinLiu](zhixin.liu@dfrobot.com)
- * @version V0.1
- * @date 2022-08-15
+ * @version V1.0
+ * @date 2022-10-26
  * @url https://github.com/DFRobot/DFRobot_GNSS
  */
 #include "DFRobot_GNSS.h"
@@ -103,7 +103,7 @@ double DFRobot_GNSS::getCog(void)
   double cog;
   uint8_t _sendData[10] = {0};
 
-  readReg(I2C_SOG_H, _sendData, 3);
+  readReg(I2C_COG_H, _sendData, 3);
   if(_sendData[0] & 0x80){
     cog = (double)((uint16_t)(_sendData[0]&0x7F)<<8 | _sendData[1]) + (double)_sendData[2]/100.0;
   }else{
@@ -280,26 +280,50 @@ int16_t DFRobot_GNSS_I2C::readReg(uint8_t reg,uint8_t *data,uint8_t len)
   return 0;
 }
 
-#ifdef ESP_PLATFORM
-  DFRobot_GNSS_UART::DFRobot_GNSS_UART(HardwareSerial *hSerial, uint16_t Baud)
-  {
-    this->_serial = hSerial;
-    this->_baud = Baud;
-    uartI2CFlag = UART_FLAG;
-  }
-#else
+// #ifdef ESP_PLATFORM
+//   DFRobot_GNSS_UART::DFRobot_GNSS_UART(HardwareSerial *hSerial, uint16_t Baud)
+//   {
+//     this->_serial = hSerial;
+//     this->_baud = Baud;
+//     uartI2CFlag = UART_FLAG;
+//   }
+// #else
+//   DFRobot_GNSS_UART::DFRobot_GNSS_UART(SoftwareSerial *sSerial, uint16_t Baud)
+//   {
+//     this->_serial = sSerial;
+//     this->_baud = Baud;
+//     uartI2CFlag = UART_FLAG;
+//   }
+// #endif
+
+#if defined(ARDUINO_AVR_UNO) || defined(ESP8266)
   DFRobot_GNSS_UART::DFRobot_GNSS_UART(SoftwareSerial *sSerial, uint16_t Baud)
   {
     this->_serial = sSerial;
     this->_baud = Baud;
     uartI2CFlag = UART_FLAG;
+    _serial->begin(this->_baud);
+  }
+#else
+  DFRobot_GNSS_UART::DFRobot_GNSS_UART(HardwareSerial *hSerial, uint16_t Baud ,uint8_t txpin, uint8_t rxpin)
+  {
+    this->_serial = hSerial;
+    this->_baud = Baud;
+    uartI2CFlag = UART_FLAG;
+    this->_txpin = txpin;
+    this->_rxpin = rxpin;
   }
 #endif
 
 bool DFRobot_GNSS_UART::begin()
 {
+  #ifdef ARDUINO_SAM_ZERO
+    _serial->begin(this->_baud);  // M0 不能在构造里创建begin
+  #else
+    _serial->begin(this->_baud, SERIAL_8N1, _txpin, _rxpin);
+  #endif
+
   uint8_t _sendData[10] = {0};
-  _serial->begin(this->_baud);
   this->readReg (I2C_ID, _sendData, 1);
   if(_sendData[0] == GNSS_DEVICE_ADDR){
     return true;

@@ -153,7 +153,8 @@
 ## 历史
 
 - 2022/8/17 - V0.0.1 版本
+- 2022/10/26 - V1.0.0 版本
 
 ## 创作者
 
-Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2020. (Welcome to our [website](https://www.dfrobot.com/))
+Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2022. (Welcome to our website)

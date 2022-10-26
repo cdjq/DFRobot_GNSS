@@ -151,8 +151,9 @@ Download the library file before use, paste it into the custom directory for Ras
 
 ## History
 
-- 2022/8/17 - V0.0.1 Version
+- 2022/04/02 - Version 0.0.1 released.
+- 2022/10/26 - Version 1.0.0 released.
 
 ## Credits
 
-Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2020. (Welcome to our [website](https://www.dfrobot.com/))
+Written by ZhixinLiu(zhixin.liu@dfrobot.com), 2022. (Welcome to our website)
