@@ -22,7 +22,7 @@
 
 /**
  * @struct sTim_t
- * @brief 存放从gps获取的时间日期信息
+ * @brief Store the time and date information obtained from GPS 
  */
 typedef struct {
   uint16_t year;
@@ -35,7 +35,7 @@ typedef struct {
 
 /**
  * @struct sLonLat_t
- * @brief 存放从gps获取的经纬度和方向信息
+ * @brief Store latitude, longitude and direction information obtained from GPS 
  */
 typedef struct {
   uint8_t lonDDD;
@@ -54,7 +54,7 @@ typedef struct {
 
 
 /**
- * @brief GNSS 星系配置
+ * @brief Set GNSS 
  */
 typedef enum {
   eGPS=1,
@@ -127,136 +127,136 @@ public:
 
 /**
  * @fn getUTC
- * @brief 获取utc 标准时间
- * @return sTim_t 类型，表示返回的时分秒
- * @retval sTim_t.hour 时
- * @retval sTim_t.minute 分
- * @retval sTim_t.second 秒
+ * @brief Get UTC, standard time 
+ * @return sTim_t type, represents the returned hour, minute and second 
+ * @retval sTim_t.hour hour 
+ * @retval sTim_t.minute minute 
+ * @retval sTim_t.second second 
  */
   sTim_t getUTC(void);
 
 /**
  * @fn getDate
- * @brief 获取年月日等日期
- * @return sTim_t 类型，表示返回的年月日
- * @retval sTim_t.year 年
- * @retval sTim_t.month 月
- * @retval sTim_t.month 日
+ * @brief Get date information, year, month, day 
+ * @return sTim_t type, represents the returned year, month, day 
+ * @retval sTim_t.year year
+ * @retval sTim_t.month month 
+ * @retval sTim_t.month day 
  */
   sTim_t getDate(void);
 
 /**
  * @fn getLat
- * @brief 获取纬度
- * @return sLonLat_t 类型，表示返回的经纬度
- * @retval sLonLat_t.latDD   纬度 度（0-90）
- * @retval sLonLat_t.latMM   纬度 分后0-2位小数
- * @retval sLonLat_t.latMMMMM 纬度 分后2-7位小数
- * @retval sLonLat_t.latitude 包含7位小数的纬度值
- * @retval sLonLat_t.latDirection 纬度的方向
+ * @brief Get latitude 
+ * @return sLonLat_t type, represents the returned latitude  
+ * @retval sLonLat_t.latDD   Latitude degree(0-90)
+ * @retval sLonLat_t.latMM   The first and second digits behind the decimal point 
+ * @retval sLonLat_t.latMMMMM Latitude  The third and seventh digits behind the decimal point 
+ * @retval sLonLat_t.latitude Latitude value with 7 decimal digits
+ * @retval sLonLat_t.latDirection Direction of latitude
  */
   sLonLat_t getLat(void);
 
 /**
  * @fn getLon
- * @brief 获取经度
- * @return sLonLat_t 类型，表示返回的经度
- * @retval sLonLat_t.lonDDD  经度 度（0-90）
- * @retval sLonLat_t.lonMM   经度 分后0-2位小数
- * @retval sLonLat_t.lonMMMMM 经度 分后2-7位小数
- * @retval sLonLat_t.lonitude 包含7位小数的经度值
- * @retval sLonLat_t.lonDirection 经度的方向
+ * @brief Get longitude 
+ * @return sLonLat_t Type, represents the returned longitude
+ * @retval sLonLat_t.lonDDD  Longitude degree(0-90)
+ * @retval sLonLat_t.lonMM   Longitude  The first and second digits behind the decimal point
+ * @retval sLonLat_t.lonMMMMM Longitude The third and seventh digits behind the decimal point
+ * @retval sLonLat_t.lonitude Longitude value with 7 decimal digits
+ * @retval sLonLat_t.lonDirection Direction of longitude 
  */
   sLonLat_t getLon(void);
 
 /**
  * @fn getNumSatUsed
- * @brief 获取使用的卫星数
- * @return uint8_t 类型，表示使用的卫星数
+ * @brief Get the number of the used satellite used
+ * @return uint8_t type, represents the number of the used satellite
  */
   uint8_t getNumSatUsed(void);
 
 /**
  * @fn getAlt
- * @brief 获取大地的高度
- * @return double 类型，表示大地的高度
+ * @brief Get altitude
+ * @return double type, represents altitude 
  */
   double getAlt(void);
 
 /**
  * @fn getSog
- * @brief 获取对地速度
- * @return speed 浮点型数据 （单位 节）
+ * @brief Get speed over ground 
+ * @return speed Float data(unit: knot)
  */
   double getSog(void);
 
 /**
  * @fn getCog
- * @brief 获取对地真航向
- * @return 浮点型数据 （单位 度）
+ * @brief Get course over ground
+ * @return Float data(unit: degree) 
  */
   double getCog(void);
 
 /**
  * @fn setGnss
- * @brief 设置星系
+ * @brief Set GNSS to be used
  * @param mode
- * @n   eGPS              使用 gps
- * @n   eBeiDou           使用 beidou
- * @n   eGPS_BeiDou       使用 gps + beidou
- * @n   eGLONASS          使用 glonass
- * @n   eGPS_GLONASS      使用 gps + glonass
- * @n   eBeiDou_GLONASS   使用 beidou +glonass
- * @n   eGPS_BeiDou_GLONASS 使用 gps + beidou + glonass
+ * @n   eGPS              use gps
+ * @n   eBeiDou           use beidou
+ * @n   eGPS_BeiDou       use gps + beidou
+ * @n   eGLONASS          use glonass
+ * @n   eGPS_GLONASS      use gps + glonass
+ * @n   eBeiDou_GLONASS   use beidou +glonass
+ * @n   eGPS_BeiDou_GLONASS use gps + beidou + glonass
  * @return NULL
  */
   void setGnss(eGnssMode_t mode);
 
 /**
  * @fn getGnssMode
- * @brief 获取使用的星系模式
+ * @brief Get the used gnss mode
  * @return mode
- * @retval 1 使用 gps
- * @retval 2 使用 beidou
- * @retval 3 使用 gps + beidou
- * @retval 4 使用 glonass
- * @retval 5 使用 gps + glonass
- * @retval 6 使用 beidou +glonass
- * @retval 7 使用 gps + beidou + glonass
+ * @retval 1 gps
+ * @retval 2 beidou
+ * @retval 3 gps + beidou
+ * @retval 4 glonass
+ * @retval 5 gps + glonass
+ * @retval 6 beidou +glonass
+ * @retval 7 gps + beidou + glonass
  */
   uint8_t getGnssMode(void);
 
 /**
  * @fn getAllGnss
- * @brief 获取gnss的数据,回调接收
+ * @brief Get GNSS data, call back and receive
  * @return null
  */
   void getAllGnss(void);
 
 /**
  * @fn enablePower
- * @brief 使能gnss的电源
+ * @brief Enable gnss power
  * @return null
  */
 void enablePower(void);
 
 /**
  * @fn disablePower
- * @brief 失能gnss的电源
+ * @brief Disable gnss power
  * @return null
  */
 void disablePower(void);
 
 /**
  * @fn setRgbOn
- * @brief 开启 rgb 灯
+ * @brief Turn rgb on
  * @return null
  */
 void setRgbOn(void);
 
 /**
  * @fn setRgbOn
- * @brief 关闭 rgb 灯
+ * @brief Turn rgb off
  * @return null
  */
 void setRgbOff(void);
@@ -264,8 +264,8 @@ void setRgbOff(void);
 
 /**
  * @fn setCallback
- * @brief 设置回调函数类型
- * @param  * call 函数名
+ * @brief Set callback function type
+ * @param  * call function name 
  * @return null
  */
   void setCallback(void (*call)(char *, uint8_t));
@@ -277,8 +277,8 @@ private:
 
 /**
  * @fn getGnssLen
- * @brief 获取gnss的数据长度
- * @return 长度
+ * @brief Get length of gnss data 
+ * @return Length 
  */
   uint16_t getGnssLen(void);
   virtual void writeReg(uint8_t reg, uint8_t *data, uint8_t len) = 0;
