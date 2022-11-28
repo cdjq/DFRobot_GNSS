@@ -117,7 +117,7 @@ class DFRobot_GNSS(object):
 
   def begin(self):
     '''!
-      @brief 初始化传感器
+      @brief Init sensor 
     '''
     rslt = self.read_reg(I2C_ID, 1)
     time.sleep(0.1)
@@ -129,8 +129,8 @@ class DFRobot_GNSS(object):
 
   def get_date(self):
     '''!
-      @brief 获取年月日等日期
-      @return struct_utc_tim 类型，表示返回的年月日
+      @brief Get date information, year, month, day 
+      @return struct_utc_tim type, represents the returned year, month, day
     '''
     rslt = self.read_reg(I2C_YEAR_H, 4)
     if rslt != -1:
@@ -141,8 +141,8 @@ class DFRobot_GNSS(object):
 
   def get_utc(self):
     '''!
-      @brief 获取年月日等日期
-      @return struct_utc_tim 类型，表示返回的时分秒
+      @brief Get time information, hour, minute second 
+      @return struct_utc_tim type, represents the returned hour, minute, second 
     '''
     rslt = self.read_reg(I2C_HOUR, 3)
     if rslt != -1:
@@ -154,8 +154,8 @@ class DFRobot_GNSS(object):
 
   def get_lat(self):
     '''!
-      @brief 获取纬度
-      @return struct_lat_lon 类型，表示返回的纬度
+      @brief Get latitude 
+      @return struct_lat_lon type, represents the returned latitude 
     '''
     rslt = self.read_reg(I2C_LAT_1, 6)
     if rslt != -1:
@@ -169,8 +169,8 @@ class DFRobot_GNSS(object):
 
   def get_lon(self):
     '''!
-      @brief 获取经度
-      @return struct_lat_lon 类型，表示返回的经度
+      @brief Get longitude 
+      @return struct_lat_lon type, represents the returned longitude 
     '''
     rslt = self.read_reg(I2C_LON_1, 6)
     if rslt != -1:
@@ -184,8 +184,8 @@ class DFRobot_GNSS(object):
 
   def get_num_sta_used(self):
     '''!
-      @brief 获取使用的卫星数
-      @return 表示使用的卫星数
+      @brief Get the number of the used satellites 
+      @return The number of the used satellites 
     '''
     rslt = self.read_reg(I2C_USE_STAR, 1)
     if rslt != -1:
@@ -195,8 +195,8 @@ class DFRobot_GNSS(object):
 
   def get_alt(self):
     '''!
-      @brief 获取大地的高度
-      @return double 类型，表示大地的高度
+      @brief Get altitude 
+      @return double type, represent the altitude 
     '''
     rslt = self.read_reg(I2C_ALT_H, 3)
     if rslt != -1:
@@ -207,8 +207,8 @@ class DFRobot_GNSS(object):
 
   def get_cog(self):
     '''!
-      @brief 获取对地真航向
-      @return 浮点型数据 （单位 度）
+      @brief Get course over ground 
+      @return Float data(unit: degree)
     '''
     rslt = self.read_reg(I2C_COG_H, 3)
     if rslt != -1:
@@ -219,8 +219,8 @@ class DFRobot_GNSS(object):
 
   def get_sog(self):
     '''!
-      @brief 获取对地速度
-      @return speed 浮点型数据 （单位 节）
+      @brief Get speed over ground 
+      @return speed Float data (unit: knot)
     '''
     rslt = self.read_reg(I2C_SOG_H, 3)
     if rslt != -1:
@@ -231,30 +231,30 @@ class DFRobot_GNSS(object):
 
   def get_gnss_mode(self):
     '''!
-      @brief 获取使用的星系模式
+      @brief Get the used GNSS mode 
       @return mode
-      @retval 1 使用 gps
-      @retval 2 使用 beidou
-      @retval 3 使用 gps + beidou
-      @retval 4 使用 glonass
-      @retval 5 使用 gps + glonass
-      @retval 6 使用 beidou +glonass
-      @retval 7 使用 gps + beidou + glonass
+      @retval 1 gps
+      @retval 2 beidou
+      @retval 3 gps + beidou
+      @retval 4 glonass
+      @retval 5 gps + glonass
+      @retval 6 beidou +glonass
+      @retval 7 gps + beidou + glonass
     '''
     rslt = self.read_reg(I2C_GNSS_MODE, 1)
     return rslt[0]
 
   def set_gnss(self, mode):
     '''!
-      @brief 设置星系
+      @brief Set GNSS to be used 
       @param mode
-      @n   GPS              使用 gps
-      @n   BeiDou           使用 beidou
-      @n   GPS_BeiDou       使用 gps + beidou
-      @n   GLONASS          使用 glonass
-      @n   GPS_GLONASS      使用 gps + glonass
-      @n   BeiDou_GLONASS   使用 beidou +glonass
-      @n   GPS_BeiDou_GLONASS 使用 gps + beidou + glonass
+      @n   GPS              use gps
+      @n   BeiDou           use beidou
+      @n   GPS_BeiDou       use gps + beidou
+      @n   GLONASS          use glonass
+      @n   GPS_GLONASS      use gps + glonass
+      @n   BeiDou_GLONASS   use beidou +glonass
+      @n   GPS_BeiDou_GLONASS use gps + beidou + glonass
     '''
     self.__txbuf[0] = mode
     self.write_reg(I2C_GNSS_MODE, self.__txbuf)
@@ -262,7 +262,7 @@ class DFRobot_GNSS(object):
   
   def enable_power(self):
     '''!
-      @brief 使能gnss 电源
+      @brief Enable gnss power
     '''
     self.__txbuf[0] = ENABLE_POWER
     self.write_reg(I2C_SLEEP_MODE, self.__txbuf)
@@ -270,7 +270,7 @@ class DFRobot_GNSS(object):
     
   def disable_power(self):
     '''!
-      @brief 失能gnss 电源,此时gnss不更新数据
+      @brief Disable gnss power, the GNSS data will not be refreshed this time 
     '''
     self.__txbuf[0] = DISABLE_POWER
     self.write_reg(I2C_SLEEP_MODE, self.__txbuf)
@@ -279,7 +279,7 @@ class DFRobot_GNSS(object):
 
   def rgb_on(self):
     '''!
-      @brief 开启rgb
+      @brief Turn rgb on 
     '''
     self.__txbuf[0] = RGB_ON
     self.write_reg(I2C_RGB_MODE, self.__txbuf)
@@ -287,7 +287,7 @@ class DFRobot_GNSS(object):
   
   def rgb_off(self):
     '''!
-      @brief 关闭rgb
+      @brief Turn rgb off
     '''
     self.__txbuf[0] = RGB_OFF
     self.write_reg(I2C_RGB_MODE, self.__txbuf)
@@ -295,8 +295,8 @@ class DFRobot_GNSS(object):
 
   def get_gnss_len(self):
     '''!
-      @brief 获取gnss的数据长度
-      @return 长度
+      @brief Get length of GNSS data 
+      @return length of GNSS data 
     '''
     self.__txbuf[0] = 0x55
     self.write_reg(I2C_START_GET, self.__txbuf)
@@ -309,7 +309,7 @@ class DFRobot_GNSS(object):
 
   def get_all_gnss(self):
     '''!
-      @brief 获取gnss的数据
+      @brief Get gnss data
     '''
     len = self.get_gnss_len()
     time.sleep(0.1)
