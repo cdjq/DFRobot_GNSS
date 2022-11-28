@@ -31,7 +31,7 @@ void callback(char *data ,uint8_t len)
  *     RX     |              TX                |     Serial1 TX1      |     5     |   5/D6  |  D2   |     X      |  tx1  |
  *     TX     |              RX                |     Serial1 RX1      |     4     |   4/D7  |  D3   |     X      |  rx1  |
  * ----------------------------------------------------------------------------------------------------------------------*/
-/* 波特率不可以更改 */
+/* Baud rate cannot be changed  */
   #if defined(ARDUINO_AVR_UNO) || defined(ESP8266)
     SoftwareSerial mySerial(4, 5);
     DFRobot_GNSS_UART gnss(&mySerial ,9600);
@@ -50,16 +50,16 @@ void setup()
     delay(1000);
   }
 
-  gnss.enablePower();      // 使能gnss电源
+  gnss.enablePower();      // Enable gnss power
 
-/** 设置使用的星系
- *   eGPS              使用 gps
- *   eBeiDou           使用 beidou
- *   eGPS_BeiDou       使用 gps + beidou
- *   eGLONASS          使用 glonass
- *   eGPS_GLONASS      使用 gps + glonass
- *   eBeiDou_GLONASS   使用 beidou +glonass
- *   eGPS_BeiDou_GLONASS 使用 gps + beidou + glonass
+/** Set GNSS to be used 
+ *   eGPS              use gps
+ *   eBeiDou           use beidou
+ *   eGPS_BeiDou       use gps + beidou
+ *   eGLONASS          use glonass
+ *   eGPS_GLONASS      use gps + glonass
+ *   eBeiDou_GLONASS   use beidou +glonass
+ *   eGPS_BeiDou_GLONASS use gps + beidou + glonass
  */
   gnss.setGnss(eGPS_BeiDou_GLONASS);
 
