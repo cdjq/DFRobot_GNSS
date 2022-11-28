@@ -18,7 +18,7 @@ import RPi.GPIO as GPIO
 from DFRobot_GNSS import *
 
 '''
-  选择使用i2c 或者 串口
+  Select to use i2c or UART 
   I2C_MODE
   UART_MODE
 '''
@@ -35,15 +35,15 @@ def setup():
   while (gnss.begin() == False):
     print("Sensor initialize failed!!")
     time.sleep(1)
-  gnss.enable_power()        # 使能gnss 电源
+  gnss.enable_power()        # Enable gnss power
   '''
-    GPS              使用 gps
-    BeiDou           使用 beidou
-    GPS_BeiDou       使用 gps + beidou
-    GLONASS          使用 glonass
-    GPS_GLONASS      使用 gps + glonass
-    BeiDou_GLONASS   使用 beidou +glonass
-    GPS_BeiDou_GLONASS 使用 gps + beidou + glonass
+    GPS              use gps
+    BeiDou           use beidou
+    GPS_BeiDou       use gps + beidou
+    GLONASS          use glonass
+    GPS_GLONASS      use gps + glonass
+    BeiDou_GLONASS   use beidou +glonass
+    GPS_BeiDou_GLONASS use gps + beidou + glonass
   '''
   gnss.set_gnss(GPS_BeiDou_GLONASS)
 
