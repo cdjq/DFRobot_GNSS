@@ -32,21 +32,21 @@ There are two methods for using this library:<br>
 ```C++
 /**
  * @fn getUTC
- * @brief 获取utc 标准时间
- * @return sTim_t 类型，表示返回的时分秒
- * @retval sTim_t.hour 时
- * @retval sTim_t.minute 分
- * @retval sTim_t.second 秒
+ * @brief Get utc standard time
+ * @return sTim_t type, represents the returned hour, minute and second
+ * @retval sTim_t.hour hour
+ * @retval sTim_t.minute minute
+ * @retval sTim_t.second second
  */
   sTim_t getUTC(void);
 
 /**
  * @fn getDate
- * @brief 获取年月日等日期
- * @return sTim_t 类型，表示返回的年月日
- * @retval sTim_t.year 年
- * @retval sTim_t.month 月
- * @retval sTim_t.month 日
+ * @brief Get the date like year, month and day
+ * @return sTim_t type, represents the returned year, month and day
+ * @retval sTim_t.year year
+ * @retval sTim_t.month month
+ * @retval sTim_t.month day
  */
   sTim_t getDate(void);
 
