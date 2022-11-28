@@ -104,7 +104,7 @@ There are two methods for using this library:<br>
 
 /**
  * @fn setGnss
- * @brief Set GNSS
+ * @brief Set GNSS to be used
  * @param mode
  * @n   eGPS              use gps
  * @n   eBeiDou           use beidou
